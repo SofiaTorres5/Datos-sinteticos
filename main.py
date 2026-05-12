@@ -22,7 +22,7 @@ try:
   datos = pd.DataFrame({
     "Ritmo Cardiaco": ritmo_car,
     "Velocidad": velocidad,
-    "Calorias quemadas": calorias
+    "Calorias Quemadas": calorias
   })
 except Exception as e:
   print("Error:", e)
