@@ -34,7 +34,6 @@ try:
 except FileNotFoundError:
     print("Error: el archivo no existe")
 
-
 # ESTADÍSTICAS
 print("===== ESTADÍSTICAS =====\n")
 estadis = datos_leidos.describe()
@@ -73,22 +72,26 @@ def detectar_outliers(columna):
     return outliers
 
 
-# Detectar outliers en cada columna
+# Detectar en cada columna
 out_ritmo = detectar_outliers(datos_leidos["Ritmo Cardiaco"])
 
 out_velocidad = detectar_outliers(datos_leidos["Velocidad"])
 
 out_calorias = detectar_outliers(datos_leidos["Calorias Quemadas"])
 
-print("Outliers Ritmo Cardiaco:\n")
-print(out_ritmo)
-
-print("\nOutliers Velocidad:\n")
-print(out_velocidad)
-
-print("\nOutliers Calorias Quemadas:\n")
-print(out_calorias)
-
+outliers_dict = {
+  "Ritmo Cardiaco": out_ritmo,
+  "Velocidad": out_velocidad,
+  "Calorias Quemadas": out_calorias
+}
+for nombre, valores in outliers_dict.items():
+  print(f"{nombre}:")
+  if len(valores) > 0:
+    for valor in valores:
+      print(f"- {valor:.3f}")
+  else:
+    print("No se encontraron outliers")
+        
 # ELIMINAR OUTLIERS
 print("\n===== ELIMINANDO OUTLIERS =====\n")
 
